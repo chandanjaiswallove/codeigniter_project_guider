@@ -267,3 +267,78 @@ Start with:
 10. Deploy Project
 
 This is the standard process to start a CodeIgniter 3 project from scratch and maintain a proper MVC-based development workflow.
+
+
+
+
+Additional Project Help & Best Practices
+Helpers Usage
+
+CodeIgniter project me helpers ka use repeated code ko reduce karne ke liye kiya jata hai. Agar koi functionality baar-baar use ho rahi hai to uske liye custom helper bana sakte ho.
+
+Example Helpers
+application/helpers/
+├── sweet_helper.php
+├── auth_helper.php
+├── common_helper.php
+├── mail_helper.php
+Sweet Helper
+
+SweetAlert messages ko repeatedly use karne ke liye custom helper create kar sakte ho.
+
+Example Functions:
+
+function success_alert($message)
+{
+    return "
+    <script>
+        Swal.fire({
+            icon:'success',
+            title:'Success',
+            text:'".$message."'
+        });
+    </script>";
+}
+
+function error_alert($message)
+{
+    return "
+    <script>
+        Swal.fire({
+            icon:'error',
+            title:'Error',
+            text:'".$message."'
+        });
+    </script>";
+}
+
+Usage:
+
+echo success_alert('Data Inserted Successfully');
+echo error_alert('Something Went Wrong');
+
+Isse har page par SweetAlert code repeat nahi karna padega.
+
+
+Third Party Libraries
+
+CodeIgniter me external libraries ko application/third_party/ folder ke andar rakh sakte ho.
+
+Example Structure:
+
+application/
+└── third_party/
+    └── PHPMailer-master/
+        ├── src/
+        │   ├── Exception.php
+        │   ├── PHPMailer.php
+        │   └── SMTP.php
+        └── README.md
+
+Required Files:
+
+Exception.php
+PHPMailer.php
+SMTP.php
+
+Ye 3 files email sending ke liye required hoti hain.
